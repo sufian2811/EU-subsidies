@@ -355,10 +355,8 @@
 
 .introVideoEl {
   width: 100%;
-  height: auto;
-  max-height: min(85vh, 920px);
-  object-fit: contain;
-  object-position: center;
+  /* Fixed 16:9 frame so YouTube embed matches the previous video size. */
+  aspect-ratio: 16 / 9;
   display: block;
   border-radius: 18px;
   background: #0f172a;

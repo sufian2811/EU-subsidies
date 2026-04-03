@@ -397,18 +397,14 @@ function Home() {
             onMouseEnter={() => setIntroVideoHovered(true)}
             onMouseLeave={() => setIntroVideoHovered(false)}
           >
-            <video
+            <iframe
               className="introVideoEl"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              controls={introAlwaysShowControls || introVideoHovered}
-            >
-              <source src={`${process.env.PUBLIC_URL}/intro.mp4`} type="video/mp4" />
-              Your browser does not support the video element.
-            </video>
+              src="https://www.youtube.com/embed/eqaEcBSGZQM"
+              title="Introductory video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
         </Container>
       </section>
