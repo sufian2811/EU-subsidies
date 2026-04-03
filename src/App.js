@@ -312,21 +312,6 @@ function PageSection({ title, subtitle, children }) {
 }
 
 function Home() {
-  const [introVideoHovered, setIntroVideoHovered] = useState(false);
-  const [introAlwaysShowControls, setIntroAlwaysShowControls] = useState(() =>
-    typeof window !== 'undefined'
-      ? !window.matchMedia('(hover: hover) and (pointer: fine)').matches
-      : true
-  );
-
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const sync = () => setIntroAlwaysShowControls(!mq.matches);
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
-
   const homeImageOrder = useMemo(() => {
     // Randomize gallery order once per page load (avoid reshuffling on re-renders).
     const arr = [1, 2, 3, 4, 5, 6];
@@ -392,11 +377,7 @@ function Home() {
     <>
       <section className="introVideoSection">
         <Container>
-          <div
-            className="introVideoWrap"
-            onMouseEnter={() => setIntroVideoHovered(true)}
-            onMouseLeave={() => setIntroVideoHovered(false)}
-          >
+          <div className="introVideoWrap">
             <iframe
               className="introVideoEl"
               src="https://www.youtube.com/embed/eqaEcBSGZQM"
