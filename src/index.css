@@ -1,13 +1,54 @@
+:root {
+  --color-primary: #0b3a6b; /* EU-style deep blue */
+  --color-text: #0f172a; /* dark neutral */
+  --color-muted: #475569; /* slate muted */
+  --color-bg: #f8fafc; /* light neutral */
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-accent: #0ea5e9; /* optional highlight / CTA hover */
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --shadow-sm: 0 8px 24px rgba(2, 6, 23, 0.06);
+
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 }
