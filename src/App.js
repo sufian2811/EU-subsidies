@@ -170,7 +170,11 @@ function HeaderInner() {
       <Container>
         <div className="headerInner">
           <NavLink to="/" className="brand" onClick={() => setMobileOpen(false)}>
-            <div className="brandMark">EU</div>
+            <img
+              className="brandLogoImg"
+              src={`${process.env.PUBLIC_URL}/logo_final.png`}
+              alt="EU Subsidies logo"
+            />
             <div className="brandText">
               <strong>EU Subsidies</strong>
               <span>Certified IT Partnership</span>
@@ -308,6 +312,31 @@ function PageSection({ title, subtitle, children }) {
 }
 
 function Home() {
+  const [introVideoHovered, setIntroVideoHovered] = useState(false);
+  const [introAlwaysShowControls, setIntroAlwaysShowControls] = useState(() =>
+    typeof window !== 'undefined'
+      ? !window.matchMedia('(hover: hover) and (pointer: fine)').matches
+      : true
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const sync = () => setIntroAlwaysShowControls(!mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
+  const homeImageOrder = useMemo(() => {
+    // Randomize gallery order once per page load (avoid reshuffling on re-renders).
+    const arr = [1, 2, 3, 4, 5, 6];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, []);
+
   const steps = useMemo(
     () => [
       { n: 1, t: 'Choose eligible IT project', d: 'Plan an eligible digital transformation project that fits programme criteria.' },
@@ -361,6 +390,29 @@ function Home() {
 
   return (
     <>
+      <section className="introVideoSection">
+        <Container>
+          <div
+            className="introVideoWrap"
+            onMouseEnter={() => setIntroVideoHovered(true)}
+            onMouseLeave={() => setIntroVideoHovered(false)}
+          >
+            <video
+              className="introVideoEl"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              controls={introAlwaysShowControls || introVideoHovered}
+            >
+              <source src={`${process.env.PUBLIC_URL}/intro.mp4`} type="video/mp4" />
+              Your browser does not support the video element.
+            </video>
+          </div>
+        </Container>
+      </section>
+
       <section className="section hero">
         <Container>
           <div className="heroWrap">
@@ -404,6 +456,22 @@ function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="homeImagesSection">
+        <Container>
+          <div className="homeImagesGrid" aria-label="People highlights">
+            {homeImageOrder.map((n) => (
+              <div key={n} className="homeImageTile">
+                <img
+                  className="homeImageEl"
+                  src={`${process.env.PUBLIC_URL}/images/${n}.jfif`}
+                  alt={`Smiling hipster style person ${n}`}
+                />
+              </div>
+            ))}
           </div>
         </Container>
       </section>

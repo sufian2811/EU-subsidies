@@ -126,6 +126,17 @@
   letter-spacing: -0.02em;
 }
 
+.brandLogoImg {
+  /* Show the provided logo clearly (no rounded "square" frame). */
+  height: 56px;
+  width: auto;
+  max-width: 120px;
+  border-radius: 0;
+  object-fit: contain;
+  box-shadow: none;
+  display: block;
+}
+
 .brandText {
   display: flex;
   flex-direction: column;
@@ -330,6 +341,35 @@
 }
 
 /* Hero */
+.introVideoSection {
+  padding: var(--space-32) 0;
+}
+
+.introVideoWrap {
+  border-radius: 18px;
+  /* Keep native controls visible (they sit below the picture); hidden overflow clips them. */
+  overflow: visible;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.introVideoEl {
+  width: 100%;
+  height: auto;
+  max-height: min(85vh, 920px);
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  border-radius: 18px;
+  background: #0f172a;
+}
+
+@media (max-width: 900px) {
+  .introVideoSection {
+    padding: var(--space-24) 0;
+  }
+}
+
 .hero {
   padding-top: var(--space-64);
 }
@@ -344,6 +384,40 @@
 @media (max-width: 900px) {
   .heroWrap {
     padding: var(--space-24);
+  }
+}
+
+.homeImagesSection {
+  padding: var(--space-24) 0 var(--space-48);
+}
+
+.homeImagesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-16);
+}
+
+.homeImageTile {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: rgba(11, 58, 107, 0.03);
+}
+
+.homeImageEl {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .homeImagesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .homeImageEl {
+    aspect-ratio: 16 / 9;
   }
 }
 
